@@ -7,7 +7,10 @@ h1 {
 	margin-left: 20px;
 }
 
-table, th, td {
+table{
 	border: 1px solid black;
 	width:100%;
+}
+th, td{
+	border: 1px solid black;
 }

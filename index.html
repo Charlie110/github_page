@@ -12,46 +12,107 @@
 <ul>
   <li>On average, how many requests can ab complete in 10 seconds with all the power of two concurrency levels between 1 and 256 (i.e., 1, 2, 4, 8, 16, 32, 64, 128, 256)?</li>
 
+
+  <table>
+  <tr>
+    <th>HTTPS</th>
+    <th>1</th>
+    <th>2</th>
+    <th>4</th>
+    <th>8</th>
+    <th>16</th>
+    <th>32</th>
+    <th>64</th>
+    <th>128</th>
+    <th>256</th>
+  </tr>
+  <tr>
+    <th>average #/sec</th>
+    <td>13.19 [#/sec] (mean)</td>
+    <td>26.78 [#/sec] (mean)</td>
+    <td>47.99 [#/sec] (mean)</td>
+    <td>90.56 [#/sec] (mean)</td>
+    <td>138.14 [#/sec] (mean)</td>
+    <td>177.20 [#/sec] (mean)</td>
+    <td>193.30 [#/sec] (mean)</td>
+    <td>196.99 [#/sec] (mean)</td>
+    <td>172.12 [#/sec] (mean)</td>
+  </tr>
+  <tr>
+    <th># over 10 secs</th>
+    <td> 132 </td>
+    <td> 268 </td>
+    <td> 480 </td>
+    <td> 906 </td>
+    <td> 1381 </td>
+    <td> 1772 </td>
+    <td> 1933 </td>
+    <td> 1970 </td>
+    <td> 1721 </td>
+  </tr>
+  </table>
+
+
   <li>Why are there diminishing returns at higher concurrency levels?</li>
+
+  <p>We can observe from -c 32 and above the average request stopped doubling. I think the reason is that although mutiple requests are sent at a time, the github page has a limited processing time for each request. Hence the maximum processing time is about 180~ [#/sec] regardless the number of request recieved. </p>
 
   <li>What’s the performance difference when requesting HTTP and HTTPS?</li>
 
+  <table>
+  <tr>
+    <th>HTTP</th>
+    <th>1</th>
+    <th>2</th>
+    <th>4</th>
+    <th>8</th>
+    <th>16</th>
+    <th>32</th>
+    <th>64</th>
+    <th>128</th>
+    <th>256</th>
+  </tr>
+  <tr>
+    <td>average #/sec</td>
+    <td>32.36 [#/sec] (mean)</td>
+    <td>58.90 [#/sec] (mean)</td>
+    <td>120.39 [#/sec] (mean)</td>
+    <td>224.90 [#/sec] (mean)</td>
+    <td>325.29 [#/sec] (mean)</td>
+    <td>748.13 [#/sec] (mean)</td>
+    <td>1214.62 [#/sec] (mean)</td>
+    <td>1284.79 [#/sec] (mean)</td>
+    <td>1308.13 [#/sec] (mean)</td>
+  </tr>
+  <tr>
+    <td>avg(#) over 10 secs</td>
+    <td>323</td>
+    <td>589</td>
+    <td>1203</td>
+    <td>2249</td>
+    <td>3253</td>
+    <td>7481</td>
+    <td>12146</td>
+    <td>12848</td>
+    <td>13081</td>
+  </table>
+
+  <p>I think because HTTP saved the SSL processing time, HTTP has higher average #/sec request than HTTPS  </p>
+
+
+
   <li>How can github respond so quickly?</li>
 
+  <p>Load Balancer, Cache, RPC call to smoke, Redis/MySQL</p>
+
   <li>What is your site’s “Time to Interactive” according to PageSpeed Insights?</li>
+
+  <p>0.3 sec</p>
 
 </ul>
 
 
-<table>
-  <tr>
-    <th>page title</th>
-    <th>page heading</th>
-    <th>image</th>
-    <th>CSS file </th>
-    <th>unordered list</th>
-    <th>a table</th>
-    <th>a hyperlink</th>
-  </tr>
-  <tr>
-    <td>1</td>
-    <td>1</td>
-    <td>1</td>
-    <td>1</td>
-    <td>1</td>
-    <td>1</td>
-    <td>1</td>
-  </tr>
-  <tr>
-    <td> - </td>
-    <td> - </td>
-    <td> - </td>
-    <td> - </td>
-    <td> - </td>
-    <td> - </td>
-    <td> - </td>
-  </tr>
-</table>
+
 
 
 </body>
