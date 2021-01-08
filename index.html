@@ -11,8 +11,7 @@
 
 <ul>
   <li>On average, how many requests can ab complete in 10 seconds with all the power of two concurrency levels between 1 and 256 (i.e., 1, 2, 4, 8, 16, 32, 64, 128, 256)?</li>
-
-
+</ul>
   <table>
   <tr>
     <th>HTTPS</th>
@@ -52,13 +51,13 @@
   </tr>
   </table>
 
-
+<ul>
   <li>Why are there diminishing returns at higher concurrency levels?</li>
-
+</ul>
   <p>We can observe from -c 32 and above the average request stopped doubling. I think the reason is that although mutiple requests are sent at a time, the github page has a limited processing time for each request. Hence the maximum processing time is about 180~ [#/sec] regardless the number of request recieved. </p>
-
+<ul>
   <li>What’s the performance difference when requesting HTTP and HTTPS?</li>
-
+</ul>
   <table>
   <tr>
     <th>HTTP</th>
@@ -100,16 +99,19 @@
   <p>I think because HTTP saved the SSL processing time, HTTP has higher average #/sec request than HTTPS  </p>
 
 
-
+<ul>
   <li>How can github respond so quickly?</li>
+</ul>
 
   <p>Load Balancer, Cache, RPC call to smoke, Redis/MySQL</p>
 
+<ul>
   <li>What is your site’s “Time to Interactive” according to PageSpeed Insights?</li>
+</ul>
 
   <p>0.3 sec</p>
 
-</ul>
+
 
 
 
